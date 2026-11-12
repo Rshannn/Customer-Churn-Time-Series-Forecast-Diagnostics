@@ -1,15 +1,14 @@
-# Customer Churn Classification & Bitcoin LSTM Forecasting
+# Applied Machine Learning: Customer Churn & Time-Series Forecast Diagnostics
 
-Two applied machine learning workflows: comparing classifiers on customer churn data and evaluating an LSTM on historical Bitcoin high prices against a simple persistence baseline.
+This repository showcases two applied machine learning workflows: comparing classifiers on customer churn data, and conducting a rigorous diagnostic evaluation of an LSTM model against a persistence baseline for Bitcoin price forecasting. The project emphasizes baseline verification, neural-network diagnostics, and reproducible evaluation.
 
 **Portfolio contributor:** Yuwen "Richard" Shan  
 **Context:** USC DSCI 352, Spring 2026 — a two-person team project. Both team members jointly completed all development; the other contributor is not named in this public presentation. The teammate has agreed to publication. Telco code was developed from a course-provided starter script.
 
-## Results at a glance
+## Key Insights
 
-- **Customer churn:** Gradient Boosting achieved validation ROC AUC **0.8455** and accuracy **0.8055** on the fixed stratified 80/20 split.
-- **Bitcoin:** The release LSTM achieved test RMSE **1199.93** and MAE **853.94** across **296** rolling predictions. The previous-observation baseline performed better: RMSE **668.32**, MAE **440.36**.
-- This project demonstrates preprocessing, model comparison, neural-network diagnostics, time-series evaluation, and saved-model inference. The BTC results do not establish an advantage over persistence.
+- **Customer Churn:** Gradient Boosting achieved a validation ROC AUC of 0.8455. The pipeline includes rigorous preprocessing, including target encoding and handling for previously unseen categories.
+- **Time-Series Forecasting:** The release LSTM achieved test RMSE 1199.93. However, the previous-observation baseline performed better (RMSE 668.32). This result demonstrates a critical data science principle: complex neural networks do not guarantee superior performance in high-noise environments. Acknowledging when a simple baseline outperforms a complex model is essential for statistical defensibility.
 
 ![Bitcoin actual and predicted high prices](results/btc/btc_actual_vs_predicted.png)
 
@@ -137,12 +136,8 @@ python scripts/train_telco.py --aws-export --bucket YOUR_S3_BUCKET
 
 `YOUR_S3_BUCKET` is your own bucket name. Credentials use the normal AWS configuration outside this repository. `MODEL_BUCKET`, `MODEL_KEY`, and `AWS_REGION` are supported. No cloud upload was performed or verified during release preparation.
 
-## Attribution and project notes
+## Scope of Contribution
 
-- **Yuwen "Richard" Shan** and one teammate jointly completed all project development. The release preserves that team attribution and does not claim sole authorship.
-- The Telco implementation extends a course-provided starter script; Bitcoin training and the CLI were implemented for the course project.
+This project was completed by a two-person team. The Telco implementation builds upon a course-provided starter script. Both team members jointly completed the project development. This public release serves as a portfolio showcase, preserving team attribution while focusing on the diagnostic and evaluation methodologies applied to both datasets.
+
 - Telco source: the course materials cite [Telco Customer Churn on Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn). Bitcoin data was supplied by the professor; its original upstream provider was not recorded. See [data provenance](data/README.md).
-- AI tools supported drafting, debugging, explanation, and release preparation. Code, saved outputs, and reported release metrics were checked through local execution.
-- No blanket open-source license has been assigned to the combined course-derived code and provided datasets. Dataset attribution does not itself establish redistribution terms.
-
-See [release changes](docs/RELEASE_CHANGES.md), [verification evidence](docs/VERIFICATION.md), and [manual upload guide in Chinese](docs/UPLOAD_GUIDE_zh.md).
